@@ -16,11 +16,28 @@ return (
   <AnimatedBackground />
   <main className="min-h-screen flex flex-col items-center justify-center gap-10 p-6">
     
-    <h1 className="text-5xl font-bold text-center
-      bg-linear-to-r from-white via-gray-300 to-gray-500
-      text-transparent bg-clip-text">
-        AI Movie Insight Builder <span>🎬</span>
-      </h1>
+   <h1 className="text-5xl font-bold text-center flex items-center justify-center gap-3">
+
+  {/* Gradient ONLY on text */}
+  <span
+    className="
+      bg-linear-to-r
+      from-white
+      via-gray-300
+      to-gray-500
+      text-transparent
+      bg-clip-text
+    "
+  >
+    AI Movie Insight Builder
+  </span>
+
+  {/* Emoji excluded */}
+  <span className="text-white drop-shadow-lg">
+    🎬
+  </span>
+
+</h1>
 
     <MovieInput
       onResult={setResult}
