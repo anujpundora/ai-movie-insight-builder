@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { getMovieById } from "@/lib/omdb";
 import { analyzeSentiment } from "@/lib/ai";
+import { generateFallbackReviews } from "@/lib/reviews";
+
+
 
 export async function POST(req: Request) {
   try {
@@ -15,12 +18,8 @@ export async function POST(req: Request) {
     }
 
     const movie = await getMovieById(imdbId);
-
-       const aiResult = await analyzeSentiment([
-      "Amazing movie with groundbreaking visuals",
-      "Story was complex but very engaging",
-      "One of the best sci-fi movies ever made"
-    ]);
+    const reviews = await generateFallbackReviews(movie.Title);
+    const aiResult = await analyzeSentiment(reviews);
 
     console.log(aiResult);
 
