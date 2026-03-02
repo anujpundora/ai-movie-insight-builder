@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import MovieInput from "@/components/MovieInput";
+import MovieCard from "@/components/MovieCard";
 
 export default function Home() {
   const [result, setResult] = useState<any>(null);
@@ -14,10 +15,8 @@ export default function Home() {
 
       <MovieInput onResult={setResult} />
 
-      {result && (
-        <pre className="max-w-2xl overflow-auto bg-neutral-900 p-4 rounded">
-          {JSON.stringify(result, null, 2)}
-        </pre>
+     {result && (
+    <MovieCard movie={result.movie} />
       )}
     </main>
   );
