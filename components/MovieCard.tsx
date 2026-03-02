@@ -1,11 +1,15 @@
+import {
+  Card,
+  CardContent,
+} from "@/components/ui/card";
+
 interface Props {
   movie: any;
 }
 
 export default function MovieCard({ movie }: Props) {
   return (
-    <div className="max-w-4xl w-full bg-neutral-900 rounded-xl p-6 shadow-lg flex flex-col md:flex-row gap-6">
-      
+      <div className="max-w-4xl w-full bg-neutral-900 rounded-xl p-6 shadow-lg flex flex-col md:flex-row gap-6">
       {/* Poster */}
       <img
         src={movie.Poster}
@@ -33,5 +37,6 @@ export default function MovieCard({ movie }: Props) {
         </p>
       </div>
     </div>
+
   );
 }

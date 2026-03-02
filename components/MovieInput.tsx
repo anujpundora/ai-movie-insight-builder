@@ -1,5 +1,7 @@
 "use client";
 
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -48,7 +50,7 @@ export default function MovieInput({
   }
 
   return (
-    <div className="flex flex-col items-center gap-4 w-full">
+   <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-xl p-6 flex flex-col gap-4">
       <input
         type="text"
         placeholder="Enter IMDb ID (e.g. tt0133093)"

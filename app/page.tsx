@@ -5,16 +5,22 @@ import MovieInput from "@/components/MovieInput";
 import MovieCard from "@/components/MovieCard";
 import SentimentCard from "@/components/SentimentCard";
 import LoadingState from "@/components/LoadingState";
+import AnimatedBackground from "@/components/AnimatedBackground";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
 
 return (
+  <>
+  <AnimatedBackground />
   <main className="min-h-screen flex flex-col items-center justify-center gap-10 p-6">
-    <h1 className="text-4xl font-bold text-center">
-      AI Movie Insight Builder 🎬
-    </h1>
+    
+    <h1 className="text-5xl font-bold text-center
+      bg-linear-to-r from-white via-gray-300 to-gray-500
+      text-transparent bg-clip-text">
+        AI Movie Insight Builder <span>🎬</span>
+      </h1>
 
     <MovieInput
       onResult={setResult}
@@ -35,5 +41,6 @@ return (
       </div>
     )}
   </main>
+  </>
 );
 }
