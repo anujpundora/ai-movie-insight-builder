@@ -3,6 +3,7 @@
 import { useState } from "react";
 import MovieInput from "@/components/MovieInput";
 import MovieCard from "@/components/MovieCard";
+import SentimentCard from "@/components/SentimentCard";
 
 export default function Home() {
   const [result, setResult] = useState<any>(null);
@@ -15,9 +16,17 @@ export default function Home() {
 
       <MovieInput onResult={setResult} />
 
-     {result && (
+      {result && (
+    <>
     <MovieCard movie={result.movie} />
-      )}
+
+    <SentimentCard
+      sentiment={result.sentiment}
+      summary={result.summary}
+      highlights={result.highlights}
+      />
+      </>
+    )}
     </main>
   );
 }
