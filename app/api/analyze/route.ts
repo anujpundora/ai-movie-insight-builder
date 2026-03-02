@@ -16,10 +16,10 @@ export async function POST(req: Request) {
 
     const movie = await getMovieById(imdbId);
 
-      const aiResult = await analyzeSentiment([
-      "Amazing movie with incredible visuals",
-      "Story was slightly confusing but enjoyable",
-      "Great performances overall"
+       const aiResult = await analyzeSentiment([
+      "Amazing movie with groundbreaking visuals",
+      "Story was complex but very engaging",
+      "One of the best sci-fi movies ever made"
     ]);
 
     console.log(aiResult);
@@ -27,6 +27,7 @@ export async function POST(req: Request) {
     return NextResponse.json({
       success: true,
       movie,
+      aiResult
     });
   } catch (error: any) {
     console.error("Analyze API Error:", error);
