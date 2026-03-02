@@ -15,7 +15,12 @@ export default function Home() {
       <h1 className="text-4xl font-bold">
         AI Movie Insight Builder 🎬
       </h1>
-
+      <MovieInput
+        onResult={(data) => {
+          setResult(data);
+          setLoading(false);
+        }}
+      />  
       {loading && <LoadingState />}
 
       {!loading && result && (

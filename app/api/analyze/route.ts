@@ -1,36 +1,47 @@
 import { NextResponse } from "next/server";
 import { getMovieById } from "@/lib/omdb";
 import { analyzeSentiment } from "@/lib/ai";
-import { generateFallbackReviews } from "@/lib/reviews";
-
-
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const { imdbId } = body;
+    const { imdbId } = await req.json();
 
-    if (!imdbId) {
+    const cleanId = imdbId?.trim();
+
+    // ✅ format validation
+    if (!cleanId || !/^tt\d+$/.test(cleanId)) {
       return NextResponse.json(
-        { error: "IMDb ID is required" },
+        { error: "Invalid IMDb ID format" },
         { status: 400 }
       );
     }
 
-    const movie = await getMovieById(imdbId);
-    const reviews = await generateFallbackReviews(movie.Title);
+    // ✅ MOVIE FETCH SAFE BLOCK
+    let movie;
 
-    const sentimentData = await analyzeSentiment(reviews);
+    try {
+      movie = await getMovieById(cleanId);
+    } catch {
+      return NextResponse.json(
+        { error: "Movie not found" },
+        { status: 404 }
+      );
+    }
+
+    // ✅ AI SHOULD NEVER BREAK SYSTEM
+    const sentimentData = await analyzeSentiment(movie);
+
     return NextResponse.json({
       success: true,
       movie,
       ...sentimentData,
     });
-  } catch (error: any) {
-    console.error("Analyze API Error:", error);
+
+  } catch (error) {
+    console.error("Analyze API Fatal:", error);
 
     return NextResponse.json(
-      { error: error.message || "Something went wrong" },
+      { error: "Unexpected server error" },
       { status: 500 }
     );
   }

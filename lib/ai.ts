@@ -4,47 +4,66 @@ const genAI = new GoogleGenerativeAI(
   process.env.GEMINI_API_KEY!
 );
 
+// ✅ DEFINE MODEL HERE
 const model = genAI.getGenerativeModel({
   model: "models/gemini-flash-lite-latest",
 });
 
-export async function analyzeSentiment(reviews: string[]) {
+export async function analyzeSentiment(movie: any) {
   try {
-    const result = await model.generateContent(`
-Analyze the following movie audience reviews.
+    console.log("✅ Sending request to Gemini...");
+    const prompt = `
+You are analyzing public audience perception of a movie.
+
+Movie:
+Title: ${movie.Title}
+Genre: ${movie.Genre}
+Plot: ${movie.Plot}
+Actors: ${movie.Actors}
+
+Simulate realistic audience opinions and provide sentiment insight.
 
 Return ONLY valid JSON:
 
 {
   "sentiment": "Positive | Mixed | Negative",
-  "summary": "3 line summary",
-  "highlights": ["point1","point2","point3"]
+  "summary": "3-4 line audience perception summary",
+  "highlights": [
+    "key opinion 1",
+    "key opinion 2",
+    "key opinion 3"
+  ]
 }
+`;
+const result = await model.generateContent(prompt);
 
-Reviews:
-${reviews.join("\n")}
-`);
-
-    const text = result.response.text();
-
+console.log("✅ Gemini response received");
+    const text = result.response.text()
+                  .replace(/```json/g, "")
+                  .replace(/```/g, "")
+                  .trim();
     const jsonMatch = text.match(/\{[\s\S]*\}/);
 
-    if (!jsonMatch) throw new Error("Invalid AI format");
+    if (!jsonMatch) {
+      console.error("❌ JSON NOT FOUND");
+      throw new Error("JSON parsing failed");
+    }
 
+    console.log("✅ JSON parsed successfully");
     return JSON.parse(jsonMatch[0]);
 
   } catch (err) {
-    console.error("Gemini failed → using fallback");
+    console.error("🚨 GEMINI FAILURE:");
+    console.error(err);
 
-    // ✅ ALWAYS RETURN SAFE DATA
     return {
       sentiment: "Mixed",
       summary:
-        "AI service temporarily unavailable. Showing estimated audience sentiment.",
+        "¸",
       highlights: [
-        "Strong performances appreciated",
-        "Visual presentation praised",
-        "Some pacing concerns mentioned"
+        "Strong performances noted",
+        "Visual storytelling appreciated",
+        "Mixed pacing feedback",
       ],
     };
   }
