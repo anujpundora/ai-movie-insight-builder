@@ -2,7 +2,8 @@
 
 A full-stack AI-powered web application that generates intelligent audience sentiment insights for any movie using its IMDb ID.
 
-🔗 **Live Demo:** https://ai-movie-insight-builder-two.vercel.app/
+🔗 **Live Demo:** https://ai-movie-insight-builder-two.vercel.app/  
+💻 **GitHub Repository:** https://github.com/anujpundora/ai-movie-insight-builder
 
 ---
 
@@ -17,23 +18,23 @@ AI Movie Insight Builder allows users to enter an IMDb ID (e.g., `tt0133093`) an
 - 🧠 AI-generated audience sentiment summary  
 - 📊 Overall sentiment classification (Positive / Mixed / Negative)
 
-The application combines external movie data APIs with Google Gemini AI to extract meaningful insights and present them in a cinematic, premium UI.
+The application integrates external movie APIs with Google Gemini AI to extract structured insights and present them in a cinematic, premium UI.
 
 ---
 
 ## 🧠 AI Sentiment Pipeline
 
-1. User enters IMDb ID
-2. Backend fetches movie details via OMDb API
-3. Review text is generated / retrieved
-4. Google Gemini API analyzes sentiment
-5. Structured JSON insight is returned:
+1. User enters IMDb ID.
+2. Backend fetches movie details via OMDb API.
+3. Review text is generated/retrieved.
+4. Google Gemini analyzes audience sentiment.
+5. Structured JSON response is returned:
    - `sentiment`
    - `summary`
    - `highlights`
-6. Frontend renders results with animated UI components
+6. Frontend renders results with animated UI components.
 
-If AI quota is exceeded, the system gracefully falls back to predefined structured insights to maintain functionality.
+If AI quota is exceeded, the system gracefully falls back to predefined structured insights to ensure uninterrupted functionality.
 
 ---
 
@@ -53,12 +54,11 @@ If AI quota is exceeded, the system gracefully falls back to predefined structur
 - Google Gemini API
 
 ### External Data
-- OMDb API (movie metadata)
+- OMDb API (Movie metadata)
 
 ### Deployment
 - Vercel (Serverless hosting)
 
-https://ai-movie-insight-builder-two.vercel.app/
 ---
 
 ## 🎨 UI & Design Highlights
@@ -68,39 +68,34 @@ https://ai-movie-insight-builder-two.vercel.app/
 - Film-reel themed loading animation
 - Gold pulse glow during AI processing
 - Poster hover cinematic effects
-- Responsive design (mobile + desktop)
+- Fully responsive design (mobile & desktop)
 - Clean error handling with toast notifications
 
 ---
 
 ## ⚙️ Local Setup
 
-Clone repository:
+### 1️⃣ Clone the repository
 
 ```bash
-git clone <https://github.com/anujpundora/ai-movie-insight-builder>
+git clone https://github.com/anujpundora/ai-movie-insight-builder
 cd ai-movie-insight-builder
 npm install
+2️⃣ Create environment variables
 
-Create a .env.local file:
+Create a .env.local file in the root directory:
 
 OMDB_API_KEY=your_omdb_key
 GEMINI_API_KEY=your_gemini_key
-
-Run locally:
-
+3️⃣ Run locally
 npm run dev
 📦 API Structure
 POST /api/analyze
-
-Request Body:
-
+Request Body
 {
   "imdbId": "tt0133093"
 }
-
-Response:
-
+Response
 {
   "success": true,
   "movie": { ... },
@@ -108,45 +103,45 @@ Response:
   "summary": "...",
   "highlights": ["...", "..."]
 }
-✅ Error Handling
+✅ Error Handling & Edge Cases
 
 Invalid IMDb ID validation
 
-Graceful AI quota fallback
+Graceful fallback when AI quota is exceeded
 
-API error handling
+API failure handling
 
-Hydration-safe animations
+Hydration-safe animation logic
 
 Client-side loading states
 
 🧪 Testing
 
-Manual validation for valid & invalid IMDb IDs
+Manual validation for valid and invalid IMDb IDs
 
-Quota-limit fallback testing
+AI quota fallback verification
 
-Responsive layout verification
+Responsive layout testing (mobile + desktop)
 
 📌 Assumptions
 
-IMDb ID uniquely identifies a movie
+IMDb ID uniquely identifies a movie.
 
-AI sentiment approximates overall audience opinion
+AI sentiment approximates general audience perception.
 
-Fallback insights maintain usability when AI quota is exceeded
+Fallback insights maintain usability when AI quota is exceeded.
 
 🌟 Future Improvements
 
 Real-time review scraping
 
-User watchlist
+Watchlist functionality
 
 Sentiment comparison between movies
 
 Caching layer for performance optimization
 
-AI explanation transparency
+Transparent AI explanation breakdown
 
 👨‍💻 Author
 

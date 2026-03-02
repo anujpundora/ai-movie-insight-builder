@@ -31,7 +31,7 @@ export default function AnimatedBackground() {
     <div className="fixed inset-0 -z-10 overflow-hidden bg-black">
 
       {/* cinematic gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950/70 to-black" />
+      <div className="absolute inset-0 bg-linear-to-b from-black via-neutral-950/70 to-black" />
 
       {stars.map((star) => (
         <motion.div

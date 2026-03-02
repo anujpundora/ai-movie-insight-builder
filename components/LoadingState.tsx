@@ -18,7 +18,7 @@ export default function LoadingState() {
       >
         {/* Outer Reel */}
         <div className="h-28 w-28 rounded-full 
-          bg-gradient-to-br from-yellow-300 via-yellow-400 to-amber-600
+          bg-linear-to-br from-yellow-300 via-yellow-400 to-amber-600
           shadow-[0_0_40px_rgba(255,215,0,0.5)]
           flex items-center justify-center"
         >
