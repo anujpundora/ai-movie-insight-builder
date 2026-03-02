@@ -12,7 +12,7 @@ export async function analyzeSentiment(reviews: string[]) {
   const prompt = `
 Analyze the following movie audience reviews.
 
-Return STRICT JSON ONLY:
+Return ONLY valid JSON.
 
 {
   "sentiment": "Positive | Mixed | Negative",
@@ -29,13 +29,19 @@ ${reviews.join("\n")}
   const text = result.response.text();
 
   try {
-    return JSON.parse(text);
+    // ✅ extract JSON block safely
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+
+    if (!jsonMatch) throw new Error("No JSON found");
+
+    return JSON.parse(jsonMatch[0]);
+
   } catch (err) {
-    console.error("AI JSON Parse Error:", text);
+    console.error("AI Parse Failed:", text);
 
     return {
       sentiment: "Mixed",
-      summary: "Unable to analyze sentiment reliably.",
+      summary: "AI response formatting issue.",
       highlights: [],
     };
   }
