@@ -38,7 +38,7 @@ export default function SentimentCard({
       {/* Summary */}
       <div>
         <h3 className="font-semibold text-lg mb-2">
-          AI Summary
+          Audience Review Summary
         </h3>
         <p className="text-neutral-300">{summary}</p>
       </div>
