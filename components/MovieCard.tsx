@@ -1,7 +1,5 @@
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card";
+
+import { motion } from "framer-motion";
 
 interface Props {
   movie: any;
@@ -11,11 +9,16 @@ export default function MovieCard({ movie }: Props) {
   return (
       <div className="max-w-4xl w-full bg-neutral-900 rounded-xl p-6 shadow-lg flex flex-col md:flex-row gap-6">
       {/* Poster */}
-      <img
-        src={movie.Poster}
-        alt={movie.Title}
-        className="w-full md:w-64 rounded-lg object-cover"
-      />
+
+     <motion.img
+      src={movie.Poster}
+      alt={movie.Title}
+      className="w-64 rounded-lg object-cover"
+      whileHover={{
+        scale: 1.05,
+      }}
+      transition={{ type: "spring", stiffness: 200 }}
+    />
 
       {/* Details */}
       <div className="flex flex-col gap-3">

@@ -10,40 +10,31 @@ const steps = [
 
 export default function LoadingState() {
   return (
-    <div className="flex flex-col items-center gap-6 mt-10">
+    <div className="flex flex-col items-center justify-center gap-6 py-20">
 
-      {/* Spinner */}
+      {/* Gold AI Pulse */}
       <motion.div
-        animate={{ rotate: 360 }}
-        transition={{
-          repeat: Infinity,
-          duration: 1.2,
-          ease: "linear",
+        className="h-24 w-24 rounded-full bg-yellow-400"
+        animate={{
+          scale: [1, 1.4, 1],
+          opacity: [0.6, 1, 0.6],
+          boxShadow: [
+            "0 0 20px rgba(255,215,0,0.4)",
+            "0 0 40px rgba(255,215,0,0.9)",
+            "0 0 20px rgba(255,215,0,0.4)",
+          ],
         }}
-        className="h-14 w-14 border-4 border-blue-500 border-t-transparent rounded-full"
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
       />
 
-      <h2 className="text-xl font-semibold">
-        🤖 AI analyzing movie sentiment...
-      </h2>
-
-      {/* Animated Steps */}
-      <div className="flex flex-col gap-2 text-neutral-400">
-        {steps.map((step, index) => (
-          <motion.p
-            key={index}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0.3, 1, 0.3] }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              delay: index * 0.6,
-            }}
-          >
-            {step}
-          </motion.p>
-        ))}
-      </div>
+      <p className="text-gray-300 text-lg animate-pulse">
+        🤖 AI analyzing audience sentiment...
+      </p>
     </div>
   );
+
 }

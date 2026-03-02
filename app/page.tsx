@@ -14,7 +14,7 @@ export default function Home() {
 return (
   <>
   <AnimatedBackground />
-  <main className="min-h-screen flex flex-col items-center justify-center gap-10 p-6">
+  <main className="min-h-screen flex flex-col items-center justify-center gap-14 p-6">
     
    <h1 className="text-5xl font-bold text-center flex items-center justify-center gap-3">
 
@@ -22,9 +22,9 @@ return (
   <span
     className="
       bg-linear-to-r
-      from-white
-      via-gray-300
-      to-gray-500
+     from-yellow-200
+      via-yellow-400
+      to-amber-500
       text-transparent
       bg-clip-text
     "

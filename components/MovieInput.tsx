@@ -50,18 +50,18 @@ export default function MovieInput({
   }
 
   return (
-   <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-xl p-6 flex flex-col gap-4">
+   <div className="backdrop-blur-md w-full max-w-xl bg-white/5 border border-yellow-400/20 rounded-xl p-6 flex flex-col gap-6 shadow-[0_0_30px_rgba(255,215,0,0.05)] ">
       <input
         type="text"
         placeholder="Enter IMDb ID (e.g. tt0133093)"
         value={imdbId}
         onChange={(e) => setImdbId(e.target.value)}
-        className="w-full max-w-md rounded-lg bg-neutral-800 px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full  rounded-lg bg-neutral-800 px-4 py-3 outline-none focus:ring-1 focus:ring-yellow-800"
       />
 
       <button
         onClick={handleAnalyze}
-        className="rounded-lg bg-blue-600 px-6 py-3 font-semibold hover:bg-blue-700"
+        className="rounded-lg px-6 py-3 font-semibold text-black bg-linear-to-r from-yellow-400 via-yellow-500 to-amber-500 hover:from-yellow-300 hover:to-amber-400 transition-all duration-300 shadow-lg hover:shadow-[0_0_25px_rgba(255,215,0,0.6)] active:scale-95"
       >
         Analyze Movie
       </button>
