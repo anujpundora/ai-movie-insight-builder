@@ -7,40 +7,35 @@ interface Props {
   onResult: (data: any) => void;
 }
 
+
 export default function MovieInput({ onResult }: Props) {
   const [imdbId, setImdbId] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function handleAnalyze() {
-    if (!imdbId.trim()) {
-      toast.error("Please enter an IMDb ID");
-      return;
-    }
+  
+ async function handleAnalyze() {
+  if (!imdbId.trim()) return;
 
-    try {
-      setLoading(true);
+  try {
+    setLoading(true);
 
-      const res = await fetch("/api/analyze", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ imdbId }),
-      });
+    const res = await fetch("/api/analyze", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ imdbId }),
+    });
 
-      const data = await res.json();
+    const data = await res.json();
+    onResult(data);
 
-      if (!res.ok) {
-        throw new Error(data.error);
-      }
-
-      onResult(data);
-    } catch (error: any) {
-      toast.error(error.message || "Something went wrong");
-    } finally {
-      setLoading(false);
-    }
+  } catch (err) {
+    toast.error("Failed to analyze movie");
+  } finally {
+    setLoading(false);
   }
+}
 
   return (
     <div className="flex flex-col items-center gap-4">
