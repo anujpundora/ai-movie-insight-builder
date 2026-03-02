@@ -19,9 +19,6 @@ export async function POST(req: Request) {
 
     const movie = await getMovieById(imdbId);
     const reviews = await generateFallbackReviews(movie.Title);
-    const aiResult = await analyzeSentiment(reviews);
-
-    console.log(aiResult);
 
     const sentimentData = await analyzeSentiment(reviews);
     return NextResponse.json({

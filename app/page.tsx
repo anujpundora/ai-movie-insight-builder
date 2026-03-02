@@ -1,14 +1,24 @@
-import { getMovieById } from "@/lib/omdb";
+"use client";
 
+import { useState } from "react";
+import MovieInput from "@/components/MovieInput";
 
-export default async function Home() {
-  const movie = await getMovieById("tt0133093");
-  
+export default function Home() {
+  const [result, setResult] = useState<any>(null);
+
   return (
-    <div className="p-10">
-      <h1>{movie.Title}</h1>
-      <p>{movie.Plot}</p>
-      <img src={movie.Poster} width={200} />
-    </div>
+    <main className="min-h-screen flex flex-col items-center justify-center gap-10 p-6">
+      <h1 className="text-4xl font-bold">
+        AI Movie Insight Builder 🎬
+      </h1>
+
+      <MovieInput onResult={setResult} />
+
+      {result && (
+        <pre className="max-w-2xl overflow-auto bg-neutral-900 p-4 rounded">
+          {JSON.stringify(result, null, 2)}
+        </pre>
+      )}
+    </main>
   );
 }
