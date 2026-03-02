@@ -5,7 +5,7 @@ const genAI = new GoogleGenerativeAI(
 );
 
 const model = genAI.getGenerativeModel({
-  model: "models/gemini-flash-lite-latest",
+  model: "models/gemini-2.5-pro",
 });
 
 export async function generateFallbackReviews(
