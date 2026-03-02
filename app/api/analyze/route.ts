@@ -23,10 +23,11 @@ export async function POST(req: Request) {
 
     console.log(aiResult);
 
+    const sentimentData = await analyzeSentiment(reviews);
     return NextResponse.json({
       success: true,
       movie,
-      aiResult
+      ...sentimentData,
     });
   } catch (error: any) {
     console.error("Analyze API Error:", error);
