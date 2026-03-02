@@ -73,6 +73,22 @@ If AI quota is exceeded, the system gracefully falls back to predefined structur
 
 ---
 
+## 🎥 Try These Example IMDb IDs
+
+If you're testing the application, here are some sample IMDb IDs:
+
+| Movie | IMDb ID |
+|-------|---------|
+| The Matrix | `tt0133093` |
+| The Dark Knight | `tt0468569` |
+| Interstellar | `tt0816692` |
+| Inception | `tt1375666` |
+| Avengers: Endgame | `tt4154796` |
+
+Simply copy and paste any ID into the input field.
+
+---
+
 ## ⚙️ Local Setup
 
 ### 1️⃣ Clone the repository
