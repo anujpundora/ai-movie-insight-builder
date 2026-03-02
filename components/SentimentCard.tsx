@@ -21,7 +21,7 @@ export default function SentimentCard({
   highlights,
 }: Props) {
   return (
-    <div className="max-w-4xl w-full bg-neutral-900 rounded-xl p-6 shadow-lg flex flex-col gap-5">
+    <ul className="grid gap-3 sm:grid-cols-2">
 
       {/* Sentiment Badge */}
       <div className="flex items-center gap-3">
@@ -60,6 +60,6 @@ export default function SentimentCard({
           ))}
         </ul>
       </div>
-    </div>
+    </ul>
   );
 }

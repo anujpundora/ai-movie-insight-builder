@@ -10,31 +10,30 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
 
-  return (
-    <main className="min-h-screen flex flex-col items-center justify-center gap-10 p-6">
-      <h1 className="text-4xl font-bold">
-        AI Movie Insight Builder 🎬
-      </h1>
-      <MovieInput
-        onResult={(data) => {
-          setResult(data);
-          setLoading(false);
-        }}
-      />  
-      {loading && <LoadingState />}
+return (
+  <main className="min-h-screen flex flex-col items-center justify-center gap-10 p-6">
+    <h1 className="text-4xl font-bold text-center">
+      AI Movie Insight Builder 🎬
+    </h1>
 
-      {!loading && result && (
-        <>
-          <MovieCard movie={result.movie} />
+    <MovieInput
+      onResult={setResult}
+      setLoading={setLoading}
+    />
 
-          <SentimentCard
-            sentiment={result.sentiment}
-            summary={result.summary}
-            highlights={result.highlights}
-          />
-        </>
-      )}
+    {loading && <LoadingState />}
 
-    </main>
-  );
+    {!loading && result && (
+      <div className="flex flex-col gap-8 w-full max-w-4xl">
+        <MovieCard movie={result.movie} />
+
+        <SentimentCard
+          sentiment={result.sentiment}
+          summary={result.summary}
+          highlights={result.highlights}
+        />
+      </div>
+    )}
+  </main>
+);
 }

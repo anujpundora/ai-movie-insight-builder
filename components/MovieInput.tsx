@@ -5,40 +5,50 @@ import toast from "react-hot-toast";
 
 interface Props {
   onResult: (data: any) => void;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+export default function MovieInput({
+  onResult,
+  setLoading,
+}: Props) {
 
-export default function MovieInput({ onResult }: Props) {
   const [imdbId, setImdbId] = useState("");
-  const [loading, setLoading] = useState(false);
 
-  
- async function handleAnalyze() {
-  if (!imdbId.trim()) return;
+  async function handleAnalyze() {
+    if (!imdbId.trim()) {
+      toast.error("Please enter IMDb ID");
+      return;
+    }
 
-  try {
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    const res = await fetch("/api/analyze", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ imdbId }),
-    });
+      const res = await fetch("/api/analyze", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ imdbId }),
+      });
 
-    const data = await res.json();
-    onResult(data);
+      const data = await res.json();
 
-  } catch (err) {
-    toast.error("Failed to analyze movie");
-  } finally {
-    setLoading(false);
+      if (!res.ok) {
+        throw new Error(data.error);
+      }
+
+      onResult(data);
+
+    } catch (err: any) {
+      toast.error(err.message || "Failed to analyze movie");
+    } finally {
+      setLoading(false);
+    }
   }
-}
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center gap-4 w-full">
       <input
         type="text"
         placeholder="Enter IMDb ID (e.g. tt0133093)"
@@ -49,10 +59,9 @@ export default function MovieInput({ onResult }: Props) {
 
       <button
         onClick={handleAnalyze}
-        disabled={loading}
-        className="rounded-lg bg-blue-600 px-6 py-3 font-semibold hover:bg-blue-700 disabled:opacity-50"
+        className="rounded-lg bg-blue-600 px-6 py-3 font-semibold hover:bg-blue-700"
       >
-        {loading ? "Analyzing..." : "Analyze Movie"}
+        Analyze Movie
       </button>
     </div>
   );

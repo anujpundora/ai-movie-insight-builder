@@ -59,7 +59,7 @@ console.log("✅ Gemini response received");
     return {
       sentiment: "Mixed",
       summary:
-        "¸",
+        "Audience sentiment estimation currently unavailable(API Qouta exceeded daily limit).",
       highlights: [
         "Strong performances noted",
         "Visual storytelling appreciated",
